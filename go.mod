@@ -1,4 +1,4 @@
-module servicedefinition
+module github.com/AESthetix256/servicedefinition
 
 require (
 	github.com/go-logr/logr v0.1.0
