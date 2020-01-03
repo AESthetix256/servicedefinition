@@ -1,0 +1,9 @@
+apiVersion: servicedefinition.sz-ybbs.ac.at/v1alpha1
+kind: Servicedefinition
+metadata:
+  name: max
+spec:
+  cms:
+    name: "Typo3"
+    version: "1"
+  owner: max
