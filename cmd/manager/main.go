@@ -11,8 +11,8 @@ import (
 	_ "k8s.io/client-go/plugin/pkg/client/auth"
 	"k8s.io/client-go/rest"
 
-	"servicedefinition/pkg/apis"
-	"servicedefinition/pkg/controller"
+	"github.com/AESthetix256/servicedefinition/pkg/apis"
+	"github.com/AESthetix256/servicedefinition/pkg/controller"
 
 	"github.com/operator-framework/operator-sdk/pkg/k8sutil"
 	kubemetrics "github.com/operator-framework/operator-sdk/pkg/kube-metrics"
@@ -72,6 +72,12 @@ func main() {
 		log.Error(err, "Failed to get watch namespace")
 		os.Exit(1)
 	}
+
+	// TODO: Is there a smoother way to set cluster wide namepsace watching
+	namespace = ""
+	// TODO: Remove custom debug
+	log.V(3).Info("Watch namespace: >" + namespace + "<")
+
 
 	// Get a config to talk to the apiserver
 	cfg, err := config.GetConfig()

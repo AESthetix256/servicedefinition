@@ -2,13 +2,13 @@ package servicedefinition
 
 import (
 	"context"
+	servicedefinitionv1alpha1 "github.com/AESthetix256/servicedefinition/pkg/apis/servicedefinition/v1alpha1"
+	"github.com/AESthetix256/servicedefinition/pkg/controller/servicedefinition/serviceContainerDefinitions"
 	"github.com/go-logr/logr"
 	corev1 "k8s.io/api/core/v1"
-	servicedefinitionv1alpha1 "servicedefinition/pkg/apis/servicedefinition/v1alpha1"
 	networkingv1 "k8s.io/api/networking/v1beta1"
-	"servicedefinition/pkg/controller/servicedefinition/serviceContainerDefinitions"
-	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 	"k8s.io/apimachinery/pkg/types"
+	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 
 	"k8s.io/apimachinery/pkg/api/errors"
 )
@@ -107,6 +107,8 @@ func ReturnPodForService (reqLogger logr.Logger, service *servicedefinitionv1alp
 	}
 
 	if service.Spec.CMS.Name == "Typo3" {
+		reqLogger.V(3).Info("Namespace of service: " + service.Namespace)
+
 		return 	serviceContainerDefinitions.NewTypo3PodForCR(service),
 		      	serviceContainerDefinitions.NewTypo3ServiceForCR(service),
 		      	serviceContainerDefinitions.NewTypo3IngressForCR(service),

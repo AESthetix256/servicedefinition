@@ -1,0 +1,12 @@
+apiVersion: servicedefinition.sz-ybbs.ac.at/v1alpha1
+kind: Servicedefinition
+metadata:
+  name: "andreas-ganaus-5ahitn-gantest"
+  namespace: "class-services"
+spec:
+  cms:
+    name: "Typo3"
+    version: "1"
+  owner: "andreas-ganaus-5ahitn-gantest"
+  purpose: gantest
+  refClass: "5AHITN"

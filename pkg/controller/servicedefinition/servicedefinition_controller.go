@@ -2,11 +2,12 @@ package servicedefinition
 
 import (
 	"context"
+	"sigs.k8s.io/controller-runtime/pkg/controller/controllerutil"
 
+	servicedefinitionv1alpha1 "github.com/AESthetix256/servicedefinition/pkg/apis/servicedefinition/v1alpha1"
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/api/errors"
 	"k8s.io/apimachinery/pkg/runtime"
-	servicedefinitionv1alpha1 "servicedefinition/pkg/apis/servicedefinition/v1alpha1"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/controller"
 	"sigs.k8s.io/controller-runtime/pkg/handler"
@@ -100,18 +101,27 @@ func (r *ReconcileServicedefinition) Reconcile(request reconcile.Request) (recon
 	// Überprüfen ob instanz passt
 	valid, err := ValidateService(reqLogger,instance)
 	if valid {
-
 		// Identify Service
 
 		// Define a new Pod object
 		pod, service, ingress, _ := ReturnPodForService(reqLogger, instance)
 
-		r.CreateIfNotExists(reqLogger, pod, service, ingress)
+		if err := controllerutil.SetControllerReference(instance, pod, r.scheme); err != nil {
+			return reconcile.Result{}, err
+		}
 
-		return reconcile.Result{}, nil
+		if err := controllerutil.SetControllerReference(instance, service, r.scheme); err != nil {
+			return reconcile.Result{}, err
+		}
+
+		if err := controllerutil.SetControllerReference(instance, ingress, r.scheme); err != nil {
+			return reconcile.Result{}, err
+		}
+
+		return r.CreateIfNotExists(reqLogger, pod, service, ingress)
 	}
 
-	// nicht ok, nicht erstellen und löschen, error messages
+	// nicht ok, nicht erstellen und TODO: löschen, error messages
 	return reconcile.Result{}, err
 }
 

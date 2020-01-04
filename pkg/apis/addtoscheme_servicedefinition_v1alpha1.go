@@ -1,7 +1,7 @@
 package apis
 
 import (
-	"servicedefinition/pkg/apis/servicedefinition/v1alpha1"
+	"github.com/AESthetix256/servicedefinition/pkg/apis/servicedefinition/v1alpha1"
 )
 
 func init() {

@@ -1,9 +1,11 @@
 apiVersion: servicedefinition.sz-ybbs.ac.at/v1alpha1
 kind: Servicedefinition
 metadata:
-  name: max
+  name: "andreas"
+  namespace: "manual-services"
 spec:
   cms:
     name: "Typo3"
     version: "1"
-  owner: max
+  owner: andreas
+  purpose: operatorTest

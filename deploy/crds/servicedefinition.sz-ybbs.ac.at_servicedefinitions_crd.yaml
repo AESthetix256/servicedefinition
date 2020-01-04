@@ -29,7 +29,6 @@ spec:
         metadata:
           type: object
         spec:
-          description: ServicedefinitionSpec defines the desired state of Servicedefinition
           properties:
             cms:
               properties:
@@ -39,6 +38,8 @@ spec:
                   type: string
               type: object
             database:
+              description: 'TODO: Was zur hölle macht die line da unter mir? Muss
+                ich die immer bei jeder eigenen def. haben? Lmao'
               properties:
                 name:
                   type: string
@@ -46,8 +47,13 @@ spec:
                   type: string
               type: object
             domain:
+              description: Specifications
               type: string
             owner:
+              type: string
+            purpose:
+              type: string
+            refClass:
               type: string
             service:
               properties:
@@ -57,6 +63,7 @@ spec:
                   type: string
               type: object
             webserver:
+              description: Services
               properties:
                 name:
                   type: string
@@ -65,6 +72,7 @@ spec:
               type: object
           required:
           - owner
+          - purpose
           type: object
         status:
           description: ServicedefinitionStatus defines the observed state of Servicedefinition

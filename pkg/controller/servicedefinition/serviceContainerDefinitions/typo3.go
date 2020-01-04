@@ -1,11 +1,11 @@
 package serviceContainerDefinitions
 
 import (
+	servicedefinitionv1alpha1 "github.com/AESthetix256/servicedefinition/pkg/apis/servicedefinition/v1alpha1"
 	corev1 "k8s.io/api/core/v1"
 	networkingv1 "k8s.io/api/networking/v1beta1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/util/intstr"
-	servicedefinitionv1alpha1 "servicedefinition/pkg/apis/servicedefinition/v1alpha1"
 )
 
 func NewTypo3IngressForCR(cr *servicedefinitionv1alpha1.Servicedefinition) *networkingv1.Ingress {
@@ -91,15 +91,6 @@ func NewTypo3PodForCR(cr *servicedefinitionv1alpha1.Servicedefinition) *corev1.P
 				{
 					Name:    "typo3-web",
 					Image:   "martinhelmich/typo3:9.5",
-					/*Ports: []corev1.ContainerPort{
-						{
-							Name:          "http",
-							ContainerPort: 80,
-							HostPort:      80,
-							Protocol:      "TCP",
-							HostIP:        "",
-						},
-					},*/
 					Ports: []corev1.ContainerPort{
 						{
 							Name:          "http",

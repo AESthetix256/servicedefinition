@@ -4,39 +4,45 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
-// EDIT THIS FILE!  THIS IS SCAFFOLDING FOR YOU TO OWN!
-// NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
-
-// ServicedefinitionSpec defines the desired state of Servicedefinition
 // +k8s:openapi-gen=true
 type ServicedefinitionSpec struct {
+
+	// Specifications
+	Domain 		string	`json:"domain,omitempty"`
+	Owner 		string 	`json:"owner"`
+	Purpose		string 	`json:"purpose"`
+	RefClass	string	`json:"refClass,omitempty"`
+
+	// Services
 	Webserver	WebserverSpec	`json:"webserver,omitempty"`
 	Database	DatabaseSpec	`json:"database,omitempty"`
 	CMS			CMSSpec	`json:"cms,omitempty"`
 	Service 	ServiceSpec	`json:"service,omitempty"`
-	Domain 		string	`json:"domain,omitempty"`
-	Owner 		string 	`json:"owner"`
 
-	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
-	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
-	// Add custom validation using kubebuilder tags: https://book-v1.book.kubebuilder.io/beyond_basics/generating_crd.html
+	// TODO: Run "operator-sdk generate k8s" to regenerate code after modifying this file
+	// TODO: Add custom validation using kubebuilder tags: https://book-v1.book.kubebuilder.io/beyond_basics/generating_crd.html
 }
 
+// TODO: Was zur hölle macht die line da unter mir? Muss ich die immer bei jeder eigenen def. haben? Lmao
+// +k8s:openapi-gen=true
 type DatabaseSpec struct {
 	Name	string	`json:"name,omitempty"`
 	Version 	string 	`json:"version,omitempty"`
 }
 
+// +k8s:openapi-gen=true
 type WebserverSpec struct {
 	Name	string	`json:"name,omitempty"`
 	Version 	string 	`json:"version,omitempty"`
 }
 
+// +k8s:openapi-gen=true
 type CMSSpec struct {
 	Name	string	`json:"name,omitempty"`
 	Version 	string 	`json:"version,omitempty"`
 }
 
+// +k8s:openapi-gen=true
 type ServiceSpec struct {
 	Name	string	`json:"name,omitempty"`
 	Version 	string 	`json:"version,omitempty"`

@@ -11,9 +11,85 @@ import (
 
 func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenAPIDefinition {
 	return map[string]common.OpenAPIDefinition{
+		"./pkg/apis/servicedefinition/v1alpha1.CMSSpec":                 schema_pkg_apis_servicedefinition_v1alpha1_CMSSpec(ref),
+		"./pkg/apis/servicedefinition/v1alpha1.DatabaseSpec":            schema_pkg_apis_servicedefinition_v1alpha1_DatabaseSpec(ref),
+		"./pkg/apis/servicedefinition/v1alpha1.ServiceSpec":             schema_pkg_apis_servicedefinition_v1alpha1_ServiceSpec(ref),
 		"./pkg/apis/servicedefinition/v1alpha1.Servicedefinition":       schema_pkg_apis_servicedefinition_v1alpha1_Servicedefinition(ref),
 		"./pkg/apis/servicedefinition/v1alpha1.ServicedefinitionSpec":   schema_pkg_apis_servicedefinition_v1alpha1_ServicedefinitionSpec(ref),
 		"./pkg/apis/servicedefinition/v1alpha1.ServicedefinitionStatus": schema_pkg_apis_servicedefinition_v1alpha1_ServicedefinitionStatus(ref),
+		"./pkg/apis/servicedefinition/v1alpha1.WebserverSpec":           schema_pkg_apis_servicedefinition_v1alpha1_WebserverSpec(ref),
+	}
+}
+
+func schema_pkg_apis_servicedefinition_v1alpha1_CMSSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Type: []string{"object"},
+				Properties: map[string]spec.Schema{
+					"name": {
+						SchemaProps: spec.SchemaProps{
+							Type:   []string{"string"},
+							Format: "",
+						},
+					},
+					"version": {
+						SchemaProps: spec.SchemaProps{
+							Type:   []string{"string"},
+							Format: "",
+						},
+					},
+				},
+			},
+		},
+	}
+}
+
+func schema_pkg_apis_servicedefinition_v1alpha1_DatabaseSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Type: []string{"object"},
+				Properties: map[string]spec.Schema{
+					"name": {
+						SchemaProps: spec.SchemaProps{
+							Type:   []string{"string"},
+							Format: "",
+						},
+					},
+					"version": {
+						SchemaProps: spec.SchemaProps{
+							Type:   []string{"string"},
+							Format: "",
+						},
+					},
+				},
+			},
+		},
+	}
+}
+
+func schema_pkg_apis_servicedefinition_v1alpha1_ServiceSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Type: []string{"object"},
+				Properties: map[string]spec.Schema{
+					"name": {
+						SchemaProps: spec.SchemaProps{
+							Type:   []string{"string"},
+							Format: "",
+						},
+					},
+					"version": {
+						SchemaProps: spec.SchemaProps{
+							Type:   []string{"string"},
+							Format: "",
+						},
+					},
+				},
+			},
+		},
 	}
 }
 
@@ -65,12 +141,37 @@ func schema_pkg_apis_servicedefinition_v1alpha1_ServicedefinitionSpec(ref common
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
-				Description: "ServicedefinitionSpec defines the desired state of Servicedefinition",
-				Type:        []string{"object"},
+				Type: []string{"object"},
 				Properties: map[string]spec.Schema{
+					"domain": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Specifications",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"owner": {
+						SchemaProps: spec.SchemaProps{
+							Type:   []string{"string"},
+							Format: "",
+						},
+					},
+					"purpose": {
+						SchemaProps: spec.SchemaProps{
+							Type:   []string{"string"},
+							Format: "",
+						},
+					},
+					"refClass": {
+						SchemaProps: spec.SchemaProps{
+							Type:   []string{"string"},
+							Format: "",
+						},
+					},
 					"webserver": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("./pkg/apis/servicedefinition/v1alpha1.WebserverSpec"),
+							Description: "Services",
+							Ref:         ref("./pkg/apis/servicedefinition/v1alpha1.WebserverSpec"),
 						},
 					},
 					"database": {
@@ -88,20 +189,8 @@ func schema_pkg_apis_servicedefinition_v1alpha1_ServicedefinitionSpec(ref common
 							Ref: ref("./pkg/apis/servicedefinition/v1alpha1.ServiceSpec"),
 						},
 					},
-					"domain": {
-						SchemaProps: spec.SchemaProps{
-							Type:   []string{"string"},
-							Format: "",
-						},
-					},
-					"owner": {
-						SchemaProps: spec.SchemaProps{
-							Type:   []string{"string"},
-							Format: "",
-						},
-					},
 				},
-				Required: []string{"owner"},
+				Required: []string{"owner", "purpose"},
 			},
 		},
 		Dependencies: []string{
@@ -115,6 +204,30 @@ func schema_pkg_apis_servicedefinition_v1alpha1_ServicedefinitionStatus(ref comm
 			SchemaProps: spec.SchemaProps{
 				Description: "ServicedefinitionStatus defines the observed state of Servicedefinition",
 				Type:        []string{"object"},
+			},
+		},
+	}
+}
+
+func schema_pkg_apis_servicedefinition_v1alpha1_WebserverSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Type: []string{"object"},
+				Properties: map[string]spec.Schema{
+					"name": {
+						SchemaProps: spec.SchemaProps{
+							Type:   []string{"string"},
+							Format: "",
+						},
+					},
+					"version": {
+						SchemaProps: spec.SchemaProps{
+							Type:   []string{"string"},
+							Format: "",
+						},
+					},
+				},
 			},
 		},
 	}

@@ -1,7 +1,7 @@
 package controller
 
 import (
-	"servicedefinition/pkg/controller/servicedefinition"
+	"github.com/AESthetix256/servicedefinition/pkg/controller/servicedefinition"
 )
 
 func init() {
