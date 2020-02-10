@@ -1,0 +1,11 @@
+apiVersion: servicedefinition.sz-ybbs.ac.at/v1alpha1
+kind: Servicedefinition
+metadata:
+  name: "mariadbtest"
+  namespace: "manual-services"
+spec:
+  webserver:
+    name: "MariaDB"
+    version: "1"
+  owner: mariadbtest
+  purpose: operatorTest

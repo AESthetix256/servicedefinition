@@ -1,0 +1,12 @@
+apiVersion: servicedefinition.sz-ybbs.ac.at/v1alpha1
+kind: Servicedefinition
+metadata:
+  name: "testt3"
+  namespace: "manual-services"
+spec:
+  cms:
+    name: "Typo3"
+    version: "1"
+  owner: andreas
+  purpose: domainTest
+  domain: customdomain
